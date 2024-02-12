@@ -12,9 +12,10 @@ en dessous btn de création d'event
 
 si on click sur le btn créé event =>
 Connexion obligatoire pour être enregistrer en bdd:
--nom
--prénom
--email
+
+- nom
+- prénom
+- email
 
 une foit connecté on peut créer un évènement =>
 formulaire pour crée un évènement qui s'affiche

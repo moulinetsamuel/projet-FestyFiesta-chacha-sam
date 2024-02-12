@@ -1,0 +1,35 @@
+{
+  "width": 431,
+  "height": 332,
+  "cx": [
+    [ "CONTIENT", 61 ],
+    [ "BESOIN", 205 ],
+    [ "LISTE", 61 ],
+    [ "EST_AUTEUR_DE", 205 ],
+    [ "UTILISATEUR", 364 ],
+    [ "APPARTIENT", 61 ],
+    [ "EVENEMENT", 205 ],
+    [ "PARTICIPE", 364 ]
+  ],
+  "cy": [
+    [ "CONTIENT", 53 ],
+    [ "BESOIN", 53 ],
+    [ "LISTE", 148 ],
+    [ "EST_AUTEUR_DE", 148 ],
+    [ "UTILISATEUR", 148 ],
+    [ "APPARTIENT", 261 ],
+    [ "EVENEMENT", 261 ],
+    [ "PARTICIPE", 261 ]
+  ],
+  "shift": [
+    [ "CONTIENT,BESOIN,0", 0 ],
+    [ "CONTIENT,LISTE,0", 0 ],
+    [ "EST_AUTEUR_DE,EVENEMENT,0", 0 ],
+    [ "EST_AUTEUR_DE,UTILISATEUR,0", 0 ],
+    [ "APPARTIENT,LISTE,0", 0 ],
+    [ "APPARTIENT,EVENEMENT,0", 0 ],
+    [ "PARTICIPE,EVENEMENT,0", 0 ],
+    [ "PARTICIPE,UTILISATEUR,0", 0 ]
+  ],
+  "ratio": []
+}
