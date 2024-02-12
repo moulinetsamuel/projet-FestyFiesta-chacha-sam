@@ -1,88 +1,61 @@
-# Problématique
+# Problematique
 
-Simplifier l'organisation d'événement (anniversaire, soirée, repas, etc.).
+Simplifier l'organisation d'évenement ( anniversaire, soirée, repas, etc. )
 
 ## Exemple
 
-Je souhaite organiser un repas (raclette) de famille le 15/09/24.
-Avec 5 participants, il me faut :
+Je souhaite organiser un repas de famille le 15/09/24.
+Single page application style kanban.
+en-tête de page logo, connexion et inscription (remplacer par déconexion, profil si connecté)
+petite description/utilisation du site (photo, video ???)
+en dessous btn de création d'event
 
-- 2 chaises
-- 1 kg de patates
-- 2 oignons
-- 2 paquets de fromage à raclette nature
-- Fromage à raclettes ail des ours
-- Charcuterie
-- Boissons
+si on click sur le btn créé event =>
+Connexion obligatoire pour être enregistrer en bdd:
+-nom
+-prénom
+-email
 
-Participant 1 :
+une foit connecté on peut créer un évènement =>
+formulaire pour crée un évènement qui s'affiche
+**OBLIGATOIRE:**
 
-- 2 chaises
-- 1 kg de patates
+- le nom de l'évènement,
+- le lieu,
+- la date
+- nom de l'organisateur,
+- description
 
-Participant 2 :
+### Dans mon event créé :
 
-- 2 oignons
-- 2 paquets de fromage à raclette nature
-- Fromage à raclettes ail des ours
+(créera une carte automatiquement pour le créateur de l'event)
+- un bandeau avec les info de l'event ainsi qu'un lien d'invitation qui demande l'authentification/création de compte
+qui permet de pouvoir être inviter à un event.
+- btn supprimer.
+(si on click sur le btn => supprimer l'event de la BDD et les liaisons avec les autres tables)
 
-Participant 3 :
+- btn modifier
+(si on click sur le btn => même formulaire que celui de création d'event)
 
-- Charcuterie
-- Boissons
+### dashboard
 
-## Cahier des charges
+**ajouter participants**
 
-Style Kanban.
-En-tête de page avec logo, connexion et inscription (à remplacer par déconnexion, profil si connecté).
-Petite description/utilisation du site (photo, vidéo ???).
-En dessous, bouton de création d'événement.
+- une bare de recherche avec un btn 'ajouter' => pour ajouter les participants, permet de rechercher les users dans la BDD par le nom et prénom
+- une fois le participant ajouter => créer une carte avec un btn 'supprimer'
 
-Si on clique sur le bouton "Créer un événement" :
-- Connexion obligatoire pour être enregistré en base de données :
-  - Nom
-  - Prénom
-  - Email
+**besoins**
 
-Une fois connecté, on peut créer un évènement :
-- Formulaire pour créer un évènement qui s'affiche.
-  **OBLIGATOIRE :**
-  - Le nom de l'évènement
-  - Le lieu
-  - La date
-  - Nom de l'organisateur
-  - Description
-
-### Dans mon évènement créé :
-
-(Créera une carte automatiquement pour le créateur de l'évènement)
-- Un bandeau avec les infos de l'évènement ainsi qu'un lien d'invitation qui demande l'authentification/création de compte pour pouvoir être invité à un évènement.
-- Bouton supprimer :
-  (Si on clique sur le bouton => supprimer l'évènement de la BDD et les liaisons avec les autres tables)
-- Bouton modifier :
-  (Si on clique sur le bouton => même formulaire que celui de création d'évènement)
-
-### Dashboard
-
-**Ajouter des participants**
-- Une barre de recherche avec un bouton 'ajouter' :
-  Pour ajouter les participants, permet de rechercher les utilisateurs dans la BDD par le nom et prénom.
-- Une fois le participant ajouté => créer une carte avec un bouton 'supprimer'.
-
-**Besoins**
-- Une barre de recherche avec un bouton 'ajouter' :
-  Pour ajouter les besoins (boissons, alimentaires, chaises, tables, etc...), permet de rechercher dans la table des besoins (si non présent devra cliquer sur le bouton de création du besoin).
-- Un bouton de création :
-  Permet de créer ce besoin (pop-up form => nom du produit (obligatoire), quantité (non obligatoire)).
-- "Carte besoin" :
-  Bouton supprimer (de la liste et non de la BDD) et modifier.
-- Liste des besoins :
-  Une fois créé ou trouvé en BDD, s'affiche dans cette liste.
-- Drag & drop des cartes besoins.
+- une barre de recherche avec btn 'ajouter' => pour ajouter les besoins (boissons, alimentaires, chaises, tables, etc...), permet de rechercher dans la tables des besoins (si non présent devra clicker sur le btn de création du besoin)
+- un btn de création => permet de créer ce besoin (pop-up form => nom du produit(obligatoire), quantité(non obligatoire))
+- "carte besoin" => btn supprimer (de la liste et non de la BDD) et modifier
+- liste des besoins => une fois créé ou trouver en BDD, s'affiche dans cette liste
+- drag & drop des cartes besoins
 
 ### Idée future
 
-Les invités peuvent en inviter d'autres si l'admin de l'évènement leur a donné les droits ?
-Dashboard pour créer un événement.
-Voir pour mettre l'option 'commentaires' pour les utilisateurs.
-À voir pour gérer en BDD les besoins (supprimer ???).
+les inviter peuvent en inviter d'autre si l'admin de levent leur a donner les droit ?
+dashboard pour cree event
+voire pour mettre l'option 'commentaires' pour les users
+A voir pour gérer en BDD les besoins (supprimer???)
+Voir pour lier les cartes des users ensemble (si ils sont en couples)
