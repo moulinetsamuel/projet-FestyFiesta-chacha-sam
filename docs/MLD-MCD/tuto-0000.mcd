@@ -1,0 +1,11 @@
+CONTIENT, 0N Besoin, 0N Liste
+Besoin: Code_besoin, Nom, Quantité
+:
+
+Liste: Code_liste, Nom
+EST_AUTEUR_DE, 11 Evenement, 0N Utilisateur
+Utilisateur: Code_utilisateur, Email, Nom, Prenom
+
+APPARTIENT, 11 Liste, 1N Evenement
+Evenement: Code_evenement, Nom, Lieu, Date, Description
+PARTICIPE, 0N Evenement, 0N Utilisateur

@@ -1,0 +1,20 @@
+%%mocodo
+:
+CONTIENT: #Code_besoin > Besoin > Code_besoin, _#Code_liste > Liste > Code_liste
+:
+Besoin: Code_besoin, Nom, Quantité
+:::
+
+
+:
+Liste: Code_liste, Nom, #Code_evenement > Evenement > Code_evenement
+:::
+Utilisateur: Code_utilisateur, Email, Nom, Prenom
+:
+
+
+:::
+Evenement: Code_evenement, Nom, Lieu, Date, Description, #Code_utilisateur > Utilisateur > Code_utilisateur
+:
+PARTICIPE: #Code_evenement > Evenement > Code_evenement, _#Code_utilisateur > Utilisateur > Code_utilisateur
+:
