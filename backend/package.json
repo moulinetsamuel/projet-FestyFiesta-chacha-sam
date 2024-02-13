@@ -1,0 +1,30 @@
+{
+  "name": "projet-festyfiesta-chacha-sam",
+  "version": "1.0.0",
+  "description": "Simplifier l'organisation d'évenement ( anniversaire, soirée, repas, etc. )",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.0",
+    "sequelize-cli": "^6.6.2"
+  }
+}
