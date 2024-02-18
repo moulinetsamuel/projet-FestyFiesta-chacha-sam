@@ -17,3 +17,13 @@
     display: flex;
     justify-content: center;
 }
+
+.btnadd {
+    margin-top: 3rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.fa-lg {
+    padding: 1rem 0rem;
+}
