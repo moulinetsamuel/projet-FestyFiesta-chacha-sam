@@ -1,0 +1,19 @@
+.navbar-item img {
+    max-height: 3.5rem;
+    width: 250px;
+    margin-left: 20px;
+}
+
+.navbar {
+    height: 100px;
+    background-color: hsl(271, 77%, 87%);
+    
+}
+.button {
+    background-color: rgb(164, 77, 240);
+    color: azure;
+}
+ .addbtn{
+    display: flex;
+    justify-content: center;
+}
