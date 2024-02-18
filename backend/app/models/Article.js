@@ -11,4 +11,9 @@ Article.init({
   quantity: {
     type: DataTypes.TEXT,
   },
+}, {
+  sequelize,
+  tableName: 'article',
 });
+
+export default Article;

@@ -2,6 +2,7 @@ import User from './User.js';
 import Event from './Event.js';
 import List from './List.js';
 import Article from './Article.js';
+import sequelize from '../config/database.js';
 
 // User <-> Event   => N:N
 User.belongsToMany(Event, {
@@ -55,4 +56,5 @@ export {
   Event,
   List,
   Article,
+  sequelize,
 };
