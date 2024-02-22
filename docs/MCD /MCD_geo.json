@@ -1,0 +1,26 @@
+{
+  "width": 372,
+  "height": 263,
+  "cx": [
+    [ "ARTICLE", 52 ],
+    [ "APPARTIENT", 166 ],
+    [ "UTILISATEUR", 308 ],
+    [ "EVENEMENT", 166 ],
+    [ "EST_AUTEUR_DE", 308 ]
+  ],
+  "cy": [
+    [ "ARTICLE", 60 ],
+    [ "APPARTIENT", 60 ],
+    [ "UTILISATEUR", 60 ],
+    [ "EVENEMENT", 195 ],
+    [ "EST_AUTEUR_DE", 195 ]
+  ],
+  "shift": [
+    [ "APPARTIENT,UTILISATEUR,0", 0 ],
+    [ "APPARTIENT,EVENEMENT,0", 0 ],
+    [ "APPARTIENT,ARTICLE,0", 0 ],
+    [ "EST_AUTEUR_DE,UTILISATEUR,0", 0 ],
+    [ "EST_AUTEUR_DE,EVENEMENT,0", 0 ]
+  ],
+  "ratio": []
+}

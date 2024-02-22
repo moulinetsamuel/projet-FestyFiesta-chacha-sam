@@ -1,0 +1,13 @@
+%%mocodo
+:
+ARTICLE: Code_article, Nom, Quantité
+:
+appartient: #Code_utilisateur > UTILISATEUR > Code_utilisateur, _#Code_evenement > EVENEMENT > Code_evenement, _#Code_article > ARTICLE > Code_article
+:
+UTILISATEUR: Code_utilisateur, Nom, Prénom, email
+:
+
+
+:::
+EVENEMENT: Code_evenement, Nom, Lieu, Date, Description, #Code_utilisateur > UTILISATEUR > Code_utilisateur
+:::

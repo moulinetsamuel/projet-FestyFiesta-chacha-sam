@@ -1,0 +1,8 @@
+ARTICLE: Code_article, Nom, Quantité
+appartient, 0N utilisateur, 0N evenement, 0N article
+UTILISATEUR: Code_utilisateur, Nom, Prénom, email
+
+
+:
+EVENEMENT: Code_evenement, Nom, Lieu, Date, Description
+est_auteur_de, 0N utilisateur, 11 EVENEMENT
