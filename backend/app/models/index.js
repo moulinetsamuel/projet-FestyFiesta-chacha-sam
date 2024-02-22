@@ -1,7 +1,7 @@
-import User from './User';
-import Event from './Event';
-import Article from './Article';
-import sequelize from '../config/database';
+import User from './User.js';
+import Event from './Event.js';
+import Article from './Article.js';
+import sequelize from '../config/database.js';
 
 // User <-> Event ==> 1:N (user:crée event)
 User.hasMany(Event, {
@@ -27,10 +27,23 @@ Event.belongsToMany(User, {
 Article.belongsToMany(User, {
   through: 'user_has_event_has_article',
   foreignKey: 'article_id',
-  as: 'authors',  // Article.findOne({ include: 'authors' })
+});
+User.belongsToMany(Article, {
+  through: 'user_has_event_has_article',
+  foreignKey: 'user_id',
+  as: 'userArticles',  // User.findOne({ include: 'userArticles' })
+});
+Event.belongsToMany(Article, {
+  through: 'user_has_event_has_article',
+  foreignKey: 'event_id',
+  as: 'eventArticles',  // Event.findOne({ include: 'articles' })
+});
+Article.belongsToMany(Event, {
+  through: 'user_has_event_has_article',
+  foreignKey: 'article_id',
 });
 
-export default {
+export {
   User,
   Event,
   Article,
