@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "node --watch index.js",
     "start": "node index.js",
-    "db:create": "psql -f ./data/init_db.sql"
+    "db:init": "psql -f ./data/init_db.sql",
+    "db:create": "node init-db.js",
+    "db:seed": "psql -U festyfiesta -d festyfiesta -f ./data/seeding.sql"
   },
   "keywords": [],
   "author": "",
