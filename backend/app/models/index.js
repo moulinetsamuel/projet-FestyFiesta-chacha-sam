@@ -3,44 +3,46 @@ import Event from './Event.js';
 import Article from './Article.js';
 import sequelize from '../config/database.js';
 
-// User <-> Event ==> 1:N (user:crée event)
-User.hasMany(Event, {
-  foreignKey: 'author_id',
-  as: 'createdEvents',  // User.findAll({ include: 'createdEvents' })
-});
-Event.belongsTo(User, {
-  foreignKey: 'author_id',
-  as: 'author',  // Event.findOne({ include: 'author' })
+// Liaison ternaire entre User, Event et Besoin
+const Participation = sequelize.define('Participation', {
+  // Ajoutez d'autres attributs si nécessaire
 });
 
-// User <-> Event ==> N:N (user: participant)
-User.belongsToMany(Event, {
-  through: 'user_has_event_has_article',
-  foreignKey: 'user_id',
-  as: 'participatedEvents',  // User.findAll({ include: 'participatedEvents' })
+// Liaisons 1N entre User et Event
+User.hasMany(Event, {
+  as: 'createdEvents',
+  foreignKey: 'authorId',
 });
-Event.belongsToMany(User, {
-  through: 'user_has_event_has_article',
-  foreignKey: 'event_id',
-  as: 'participants',  // Event.findOne({ include: 'participants' })
+Event.belongsTo(User, {
+  as: 'author',
+  foreignKey: 'authorId',
 });
-Article.belongsToMany(User, {
-  through: 'user_has_event_has_article',
-  foreignKey: 'article_id',
+
+User.hasMany(Participation, {
+  as: 'participatedEvents',
+  foreignKey: 'userId',
 });
-User.belongsToMany(Article, {
-  through: 'user_has_event_has_article',
-  foreignKey: 'user_id',
-  as: 'userArticles',  // User.findOne({ include: 'userArticles' })
+Participation.belongsTo(User, {
+  as: 'participant',
+  foreignKey: 'userId',
 });
-Event.belongsToMany(Article, {
-  through: 'user_has_event_has_article',
-  foreignKey: 'event_id',
-  as: 'eventArticles',  // Event.findOne({ include: 'articles' })
+
+Article.hasMany(Participation, {
+  as: 'participatedEvents',
+  foreignKey: 'articleId',
 });
-Article.belongsToMany(Event, {
-  through: 'user_has_event_has_article',
-  foreignKey: 'article_id',
+Participation.belongsTo(Article, {
+  as: 'article',
+  foreignKey: 'articleId',
+});
+
+Event.hasMany(Participation, {
+  as: 'participants',
+  foreignKey: 'eventId',
+});
+Participation.belongsTo(Event, {
+  as: 'event',
+  foreignKey: 'eventId',
 });
 
 export {
