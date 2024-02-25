@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "node --watch index.js",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:init": "psql -f ./data/init_db.sql",
+    "db:create": "node init-db.js",
+    "db:seed": "psql -U festyfiesta -d festyfiesta -f ./data/seeding.sql"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +25,8 @@
   "dependencies": {
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
+    "faker": "^5.5.3",
     "pg": "^8.11.3",
-    "sequelize": "^6.37.0",
-    "faker": "^5.5.3"
+    "sequelize": "^6.37.1"
   }
 }
