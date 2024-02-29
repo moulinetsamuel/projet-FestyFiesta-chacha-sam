@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-class Article extends Model {}
+class Object extends Model {}
 
-Article.init({
+Object.init({
   name: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -13,7 +13,7 @@ Article.init({
   },
 }, {
   sequelize,
-  tableName: 'articles',
+  tableName: 'objects',
 });
 
-export default Article;
+export default Object;
