@@ -11,6 +11,10 @@ ObjectEventUser.init({
     allowNull: false,
   },
 
+  quantity: {
+    type: DataTypes.INTEGER,
+  },
+
 }, {
   sequelize,
   tableName: 'object_event_users',

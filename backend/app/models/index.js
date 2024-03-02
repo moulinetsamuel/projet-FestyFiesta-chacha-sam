@@ -18,13 +18,13 @@ Event.belongsTo(User, {
 // Super liaison entre event et user pour definir les participants
 Event.belongsToMany(User, {
   through: EventUser,
-  // as: 'participants',
-  // foreignKey: 'eventId',
+  as: 'participants',
+  foreignKey: 'eventId',
 });
 User.belongsToMany(Event, {
   through: EventUser,
-  // as: 'eventsParticipated',
-  // foreignKey: 'userId',
+  as: 'eventsParticipated',
+  foreignKey: 'userId',
 });
 EventUser.belongsTo(Event);
 EventUser.belongsTo(User);

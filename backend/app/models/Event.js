@@ -31,6 +31,11 @@ Event.init({
     allowNull: false,
   },
 
+  authorId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+
 }, {
   sequelize,
   tableName: 'events',

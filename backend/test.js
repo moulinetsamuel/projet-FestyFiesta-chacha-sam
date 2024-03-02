@@ -1,5 +1,5 @@
 import {
-  Event, User, Object,
+  Event, User, Object, EventUser,
 } from './app/models/index.js';
 
 const run = async () => {
