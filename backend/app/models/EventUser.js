@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-class Object extends Model {}
+class EventUser extends Model {}
 
-Object.init({
+EventUser.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -11,14 +11,9 @@ Object.init({
     allowNull: false,
   },
 
-  name: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
-
 }, {
   sequelize,
-  tableName: 'objects',
+  tableName: 'event_users',
 });
 
-export default Object;
+export default EventUser;
