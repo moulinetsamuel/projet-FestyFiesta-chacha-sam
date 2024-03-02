@@ -1,5 +1,5 @@
 import {
-  Event, User, Object, sequelize,
+  Event, User, Object, EventUser, sequelize,
 } from './app/models/index.js';
 
 const run = async () => {
@@ -83,6 +83,48 @@ const run = async () => {
       name: 'object 10',
     },
   ]);
+
+  // Je demande à sequelize de creer des participants
+  await EventUser.bulkCreate([
+    {
+      eventId: 1,
+      userId: 1,
+    },
+    {
+      eventId: 2,
+      userId: 2,
+    },
+    {
+      eventId: 3,
+      userId: 3,
+    },
+  ]);
+
+  const objetsEvent1 = await Object.findAll({
+    where: {
+      id: [1, 2, 3],
+    },
+  });
+
+  const objetsEvent2 = await Object.findAll({
+    where: {
+      id: [4, 5, 6],
+    },
+  });
+
+  const objetsEvent3 = await Object.findAll({
+    where: {
+      id: [7, 8, 9],
+    },
+  });
+
+  const event1 = await Event.findByPk(1);
+  const event2 = await Event.findByPk(2);
+  const event3 = await Event.findByPk(3);
+
+  await event1.addObjects(objetsEvent1);
+  await event2.addObjects(objetsEvent2);
+  await event3.addObjects(objetsEvent3);
 };
 
 run();

@@ -20,32 +20,44 @@ Event.belongsToMany(User, {
   through: EventUser,
   as: 'participants',
   foreignKey: 'eventId',
+  otherKey: 'userId',
 });
 User.belongsToMany(Event, {
   through: EventUser,
   as: 'eventsParticipated',
   foreignKey: 'userId',
+  otherKey: 'eventId',
 });
 EventUser.belongsTo(Event);
 EventUser.belongsTo(User);
 Event.hasMany(EventUser);
 User.hasMany(EventUser);
 
-// liaison entre EventUser et Obejet pour definir les besoins
+// liaison entre EventUser et Objet pour definir les besoins
 Object.belongsToMany(EventUser, {
   through: ObjectEventUser,
-  // as: 'objects',
-  // foreignKey: 'objectId',
 });
 EventUser.belongsToMany(Object, {
   through: ObjectEventUser,
-  // as: 'objects',
-  // foreignKey: 'userId',
 });
 ObjectEventUser.belongsTo(Object);
 ObjectEventUser.belongsTo(EventUser);
 Object.hasMany(ObjectEventUser);
 EventUser.hasMany(ObjectEventUser);
+
+// liaison entre event et object
+Event.belongsToMany(Object, {
+  through: 'ObjectEvent',
+  as: 'objects',
+  foreignKey: 'eventId',
+  otherKey: 'objectId',
+});
+Object.belongsToMany(Event, {
+  through: 'ObjectEvent',
+  as: 'events',
+  foreignKey: 'objectId',
+  otherKey: 'eventId',
+});
 
 export {
   User,
