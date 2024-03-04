@@ -12,16 +12,19 @@ const run = async () => {
       firstname: 'samuel',
       lastname: 'moulinet',
       email: 'admin.admin@admin.com',
+      password: 'admin',
     },
     {
       firstname: 'charlize',
       lastname: 'theron',
       email: 'user.user@user.com',
+      password: 'user',
     },
     {
-      firstname: 'charlize',
+      firstname: 'charlene',
       lastname: 'gallice',
       email: 'admin1.admin1@admin1.com',
+      password: 'admin1',
     },
   ]);
 
