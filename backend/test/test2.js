@@ -1,6 +1,6 @@
 import {
   Event, Object, EventUser, User, ObjectEventUser,
-} from './app/models/index.js';
+} from '../app/models/index.js';
 
 const pretty = (obj) => JSON.stringify(obj, null, 2);
 const cpretty = (obj) => console.log(pretty(obj));

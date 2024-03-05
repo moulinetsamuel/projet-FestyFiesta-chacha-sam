@@ -1,0 +1,18 @@
+@endpoint=http://localhost:{{$dotenv PORT}}
+
+### GET récuperation de tous les evenements
+GET {{$endpoint}}/api/event
+
+### GET récuperation d'un evenement
+GET {{$endpoint}}/event/1
+
+### POST creation d'un evenement
+POST {{$endpoint}}/event
+Content-Type: application/json
+
+{
+    "name": "test",
+    "place": "test",
+    "date": "2022-08-30",
+    "description": "test"
+}
