@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.route('/')
   .get(userController.getAll)
-  .post(userController.create);
+  .put(userController.create);
 
 router.route('/:id')
   .get(userController.getOne)
-  .put(userController.update)
+  .patch(userController.update)
   .delete(userController.delete);
 
 export default router;

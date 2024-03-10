@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.route('/')
   .get(objectController.getAll)
-  .post(objectController.create);
+  .put(objectController.create);
 
 router.route('/:id')
   .get(objectController.getOne)
-  .put(objectController.update)
+  .patch(objectController.update)
   .delete(objectController.delete);
 
 export default router;

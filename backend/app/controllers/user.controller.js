@@ -21,11 +21,6 @@ const controllerUser = {
         return;
       }
 
-      if (password.length < 8) {
-        res.status(400).send('Must be at least 8 characters');
-        return;
-      }
-
       const alreadyExist = await User.findOne({ where: { email } });
       if (alreadyExist) {
         res.status(400).send("L'email fourni est déjà utilisé.");
@@ -42,6 +37,38 @@ const controllerUser = {
         lastname,
       });
       res.status(201).json(user);
+    } catch (error) {
+      console.trace(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+
+  async update(req, res) {
+    try {
+      if (req.body.password) {
+        const NB_OF_SALT_ROUNDS = parseInt(process.env.NB_OF_SALT_ROUNDS, 10);
+        req.body.password = await bcrypt.hash(req.body.password, NB_OF_SALT_ROUNDS);
+      }
+
+      if (req.body.email) {
+        if (!emailValidator.validate(req.body.email)) {
+          res.status(400).send('Bad Request - Invalid Email');
+          return;
+        }
+      }
+      const [nbUpdated, dataUpdated] = await User.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+        returning: true,
+      });
+
+      if (nbUpdated === 0) {
+        res.status(404).send('Not Found');
+        return;
+      }
+
+      res.json(dataUpdated[0]);
     } catch (error) {
       console.trace(error);
       res.status(500).send('Internal Server Error');
