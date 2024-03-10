@@ -1,0 +1,27 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+### GET recuperation de tous les objets
+GET {{endpoint}}/object
+
+### GET recuperation d'un objet
+GET {{endpoint}}/object/1
+
+
+### POST creation d'un objet
+POST {{endpoint}}/object
+Content-Type: application/json
+
+{
+    "name": "test"
+}
+
+### PUT modification d'un objet
+PUT {{endpoint}}/object/11
+Content-Type: application/json
+
+{
+    "name": "test2"
+}
+
+### DELETE suppression d'un objet
+DELETE {{endpoint}}/object/11

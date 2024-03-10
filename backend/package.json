@@ -11,8 +11,7 @@
     "dev": "node --watch index.js",
     "start": "node index.js",
     "db:init": "psql -f ./data/init_db.sql",
-    "db:create": "node init-db.js",
-    "db:seed": "psql -U festyfiesta -d festyfiesta -f ./data/seeding.sql"
+    "db:create": "node init-db.js"
   },
   "keywords": [],
   "author": "",
@@ -23,10 +22,12 @@
     "eslint-plugin-import": "^2.29.1"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.4",
+    "email-validator": "^2.0.4",
     "express": "^4.18.2",
-    "faker": "^5.5.3",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
     "sequelize": "^6.37.1"
   }

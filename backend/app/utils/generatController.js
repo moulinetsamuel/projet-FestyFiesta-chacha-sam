@@ -15,7 +15,18 @@ const generateController = (model) => ({
   },
   async getOne(req, res) {
     try {
-      const data = await model.findByPk(req.params.id);
+      const id = parseInt(req.params.id, 10);
+      if (!id) {
+        res.status(400).send('Bad Request - Missing Params');
+        return;
+      }
+
+      const data = await model.findByPk(id);
+      if (!data) {
+        res.status(404).send('Not Found');
+        return;
+      }
+
       res.json(data);
     } catch (error) {
       console.trace(error);

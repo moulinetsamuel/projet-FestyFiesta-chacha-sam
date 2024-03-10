@@ -1,0 +1,33 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+### GET recuperation de tous les utilisateurs
+GET {{endpoint}}/user
+
+### GET recuperation d'un utilisateur
+GET {{endpoint}}/user/1
+
+
+### POST creation d'un utilisateur
+POST {{endpoint}}/user
+Content-Type: application/json
+
+{
+    "firstname": "test",
+    "lastname": "test",
+    "email": "test@test.test",
+    "password": "testtest"
+}
+
+### PUT modification d'un utilisateur
+PUT {{endpoint}}/user/4
+Content-Type: application/json
+
+{
+    "firstname": "test2",
+    "lastname": "test2",
+    "email": "test2@test2.test",
+    "password": "test2"
+}
+
+### DELETE suppression d'un utilisateur
+DELETE {{endpoint}}/user/4

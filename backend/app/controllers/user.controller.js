@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+import emailValidator from 'email-validator';
 import { User } from '../models/index.js';
 import generateController from '../utils/generatController.js';
 
@@ -5,6 +7,46 @@ const controllerUserGeneric = generateController(User);
 
 const controllerUser = {
   ...controllerUserGeneric,
+
+  async create(req, res) {
+    try {
+      // dans le front pas oublier de demander a retaper le mdp pour confirmer
+      // et comparer avec le mdp entrée
+      const {
+        email, password, firstname, lastname,
+      } = req.body;
+
+      if (!emailValidator.validate(email)) {
+        res.status(400).send('Bad Request - Invalid Email');
+        return;
+      }
+
+      if (password.length < 8) {
+        res.status(400).send('Must be at least 8 characters');
+        return;
+      }
+
+      const alreadyExist = await User.findOne({ where: { email } });
+      if (alreadyExist) {
+        res.status(400).send("L'email fourni est déjà utilisé.");
+        return;
+      }
+
+      const NB_OF_SALT_ROUNDS = parseInt(process.env.NB_OF_SALT_ROUNDS, 10);
+      const hashedPassword = await bcrypt.hash(password, NB_OF_SALT_ROUNDS);
+
+      const user = await User.create({
+        email,
+        password: hashedPassword,
+        firstname,
+        lastname,
+      });
+      res.status(201).json(user);
+    } catch (error) {
+      console.trace(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
 };
 
 export default controllerUser;

@@ -1,0 +1,9 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+
+### GET BAD récuperation d'un evenement mauvais id
+GET {{endpoint}}/event/hh
+
+### GET BAD récuperation d'un evenement qui n'existe pas
+GET {{endpoint}}/event/10000
+
