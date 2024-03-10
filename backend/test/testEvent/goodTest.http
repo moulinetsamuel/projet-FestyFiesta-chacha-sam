@@ -7,8 +7,8 @@ GET {{endpoint}}/event
 ### GET récuperation d'un evenement
 GET {{endpoint}}/event/1
 
-### POST creation d'un evenement
-POST {{endpoint}}/event
+### PUT creation d'un evenement
+PUT  {{endpoint}}/event
 Content-Type: application/json
 
 {
@@ -18,8 +18,8 @@ Content-Type: application/json
     "description": "test"
 }
 
-### PUT modification d'un evenement
-PUT {{endpoint}}/event/1
+### PATCH modification d'un evenement
+PATCH {{endpoint}}/event/1
 Content-Type: application/json
 
 {

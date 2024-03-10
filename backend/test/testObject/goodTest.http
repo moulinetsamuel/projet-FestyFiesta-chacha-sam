@@ -7,16 +7,16 @@ GET {{endpoint}}/object
 GET {{endpoint}}/object/1
 
 
-### POST creation d'un objet
-POST {{endpoint}}/object
+### PUT creation d'un objet
+PUT {{endpoint}}/object
 Content-Type: application/json
 
 {
     "name": "test"
 }
 
-### PUT modification d'un objet
-PUT {{endpoint}}/object/11
+### PATCH modification d'un objet
+PATCH {{endpoint}}/object/11
 Content-Type: application/json
 
 {
