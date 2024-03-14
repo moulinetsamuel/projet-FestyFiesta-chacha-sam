@@ -6,7 +6,6 @@ import userRouter from './user.api.router.js';
 
 const router = express.Router();
 
-// router.use('/auth', authRouter);
 router.use('/event', eventRouter);
 router.use('/object', objectRouter);
 router.use('/user', userRouter);

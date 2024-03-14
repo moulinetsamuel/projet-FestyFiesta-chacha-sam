@@ -13,11 +13,17 @@ const controllerUser = {
       // dans le front pas oublier de demander a retaper le mdp pour confirmer
       // et comparer avec le mdp entrée
       const {
-        email, password, firstname, lastname,
+        email, password, firstname, lastname, confirmPassword,
       } = req.body;
 
       if (!emailValidator.validate(email)) {
         res.status(400).send('Bad Request - Invalid Email');
+        return;
+      }
+
+      // Vérifier que le Mot de passe et sa confirmation sont égaux
+      if (password !== confirmPassword) {
+        res.status(400).send('Les deux mots de passe fournis ne correspondent pas.');
         return;
       }
 

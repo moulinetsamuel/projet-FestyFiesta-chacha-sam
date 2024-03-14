@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import {
   Event, User, Object, EventUser, sequelize,
 } from './app/models/index.js';
@@ -12,19 +13,19 @@ const run = async () => {
       firstname: 'samuel',
       lastname: 'moulinet',
       email: 'admin.admin@admin.com',
-      password: 'admin',
+      password: await bcrypt.hash('admin', 10),
     },
     {
       firstname: 'charlize',
       lastname: 'theron',
       email: 'user.user@user.com',
-      password: 'user',
+      password: await bcrypt.hash('user', 10),
     },
     {
       firstname: 'charlene',
       lastname: 'gallice',
       email: 'admin1.admin1@admin1.com',
-      password: 'admin1',
+      password: await bcrypt.hash('admin1', 10),
     },
   ]);
 

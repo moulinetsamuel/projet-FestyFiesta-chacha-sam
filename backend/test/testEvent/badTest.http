@@ -7,3 +7,23 @@ GET {{endpoint}}/event/hh
 ### GET BAD récuperation d'un evenement qui n'existe pas
 GET {{endpoint}}/event/10000
 
+### PUT BAD creation d'un evenement manque des champs
+PUT  {{endpoint}}/event
+Content-Type: application/json
+
+{
+    "name": "ggg",
+    "place": "ggg",
+    "date": "2031/05/05",
+    "description": "gsgs",
+    "authorId": 2
+}
+
+### PATCH BAD modification d'un evenement manque des champs
+PATCH {{endpoint}}/event/1
+Content-Type: application/json
+
+{
+    "dae": "2100/15/51" 
+}
+
