@@ -12,6 +12,7 @@ const sequelize = new Sequelize(`postgres://${process.env.DB_USERNAME}:${process
   define: {
     underscored: true,
   },
+  logging: false,
 });
 
 try {

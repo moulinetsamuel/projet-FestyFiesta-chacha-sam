@@ -1,0 +1,29 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+### GET BAD récupération d'un objet mauvais id
+GET {{endpoint}}/user/fzef
+
+### GET BAD récupération d'un objet inexistant
+GET {{endpoint}}/user/533tyhgd
+
+### PUT BAD creation d'un user
+PUT {{endpoint}}/user
+Content-Type: application/json
+
+{
+    "firstname": "user 1",
+    "lastname": "user 1",
+    "email": "admin.adrmin@admin.com",
+    "password": "user 1",
+    "confirmPassword": "userf 1",
+    "name": "user 1"
+}
+
+### PATCH BAD modification d'un user
+PATCH {{endpoint}}/user/1
+Content-Type: application/json
+
+{
+    "password": "user 1",
+    "confirmPassword": "usefer 1"
+}

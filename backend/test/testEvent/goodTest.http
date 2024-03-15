@@ -1,0 +1,33 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+
+### GET récuperation de tous les evenements
+GET {{endpoint}}/event
+
+### GET récuperation d'un evenement
+GET {{endpoint}}/event/1
+
+### PUT creation d'un evenement
+PUT  {{endpoint}}/event
+Content-Type: application/json
+
+{
+    "name": "test",
+    "place": "test",
+    "date": "2022-08-30",
+    "description": "test"
+}
+
+### PATCH modification d'un evenement
+PATCH {{endpoint}}/event/1
+Content-Type: application/json
+
+{
+    "name": "test2",
+    "place": "test2",
+    "date": "2022-08-30",
+    "description": "test2"
+}
+
+### DELETE suppression d'un evenement
+DELETE {{endpoint}}/event/1
