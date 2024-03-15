@@ -1,0 +1,23 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+### GET BAD récupération d'un objet mauvais id
+GET {{endpoint}}/object/fzef
+
+### GET BAD récupération d'un objet inexistant
+GET {{endpoint}}/object/533tyhgd
+
+### GET BAD création d'un objet avec un name déjà existant
+PUT {{endpoint}}/object
+Content-Type: application/json
+
+{
+    "name": "object 1"
+}
+
+### PATCH BAD modification d'un objet avec un name déjà existant
+PATCH {{endpoint}}/object/1
+Content-Type: application/json
+
+{
+    "name": "object 1"
+}

@@ -5,7 +5,7 @@
 GET {{endpoint}}/event/hh
 
 ### GET BAD récuperation d'un evenement qui n'existe pas
-GET {{endpoint}}/event/10000
+GET {{endpoint}}/event/10000dz
 
 ### PUT BAD creation d'un evenement manque des champs
 PUT  {{endpoint}}/event
@@ -13,7 +13,6 @@ Content-Type: application/json
 
 {
     "name": "ggg",
-    "place": "ggg",
     "date": "2031/05/05",
     "description": "gsgs",
     "authorId": 2

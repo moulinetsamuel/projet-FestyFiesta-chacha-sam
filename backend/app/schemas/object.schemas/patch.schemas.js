@@ -1,5 +1,3 @@
-import { z } from 'zod';
+import putSchema from './put.schema.js';
 
-export default z.object({
-  name: z.string().optional(),
-});
+export default putSchema;

@@ -13,7 +13,7 @@ router.route('/')
     eventController.create,
   );
 
-router.route('/:id')
+router.route('/:id(\\d+)')
   .get(eventController.getOne)
   .patch(
     validatorZod(eventPatchSchema),
