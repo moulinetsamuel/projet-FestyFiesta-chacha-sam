@@ -1,0 +1,27 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+### test erreur email ou password manquant
+POST {{endpoint}}/auth/login
+Content-Type: application/json
+
+{
+    "password": ""
+}
+
+### test erreur user non trouvé
+POST {{endpoint}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "toto.toto@toto.com",
+    "password": "toto"
+}
+
+### test erreur password incorrect
+POST {{endpoint}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin.admin@admin.com",
+    "password": "toto"
+}

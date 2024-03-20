@@ -7,8 +7,12 @@ export default (err, _, res, __) => {
   }
 
   if (status === 500) {
+    console.log(err);
     message = 'Internal Server Error';
   }
 
+  if (status === 404) {
+    message = 'Not Found';
+  }
   return res.status(status).json({ error: message });
 };
