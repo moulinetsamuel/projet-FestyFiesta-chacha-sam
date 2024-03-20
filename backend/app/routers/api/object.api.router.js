@@ -3,22 +3,29 @@ import objectController from '../../controllers/object.controller.js';
 import validatorZod from '../../middlewares/validation.middleware.js';
 import objectPutSchema from '../../schemas/object.schemas/put.schema.js';
 import objectPatchSchema from '../../schemas/object.schemas/patch.schemas.js';
+import errorHandler from '../../middlewares/errorHandler.js';
 
 const router = express.Router();
 
 router.route('/')
-  .get(objectController.getAll)
+  .get(
+    errorHandler(objectController.getAll),
+  )
   .put(
     validatorZod(objectPutSchema),
-    objectController.create,
+    errorHandler(objectController.create),
   );
 
 router.route('/:id(\\d+)')
-  .get(objectController.getOne)
+  .get(
+    errorHandler(objectController.getOne),
+  )
   .patch(
     validatorZod(objectPatchSchema),
-    objectController.update,
+    errorHandler(objectController.update),
   )
-  .delete(objectController.delete);
+  .delete(
+    errorHandler(objectController.delete),
+  );
 
 export default router;

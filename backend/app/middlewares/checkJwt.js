@@ -24,7 +24,6 @@ const checkJwt = (req, res, next) => {
         return res.status(401).json({ message: 'Unauthorized' });
       }
       req.user = user;
-      console.log('JWT verified:', req.user);
       next();
     });
   } catch (error) {

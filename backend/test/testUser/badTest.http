@@ -2,13 +2,16 @@
 
 ### GET BAD récupération d'un objet mauvais id
 GET {{endpoint}}/user/fzef
+Authorization: Bearer {{$dotenv TOKEN}}
 
 ### GET BAD récupération d'un objet inexistant
 GET {{endpoint}}/user/533tyhgd
+Authorization: Bearer {{$dotenv TOKEN}}
 
 ### PUT BAD creation d'un user
 PUT {{endpoint}}/user
 Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
 
 {
     "firstname": "user 1",
@@ -22,6 +25,7 @@ Content-Type: application/json
 ### PATCH BAD modification d'un user
 PATCH {{endpoint}}/user/1
 Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
 
 {
     "password": "user 1",

@@ -3,22 +3,29 @@ import eventController from '../../controllers/event.controller.js';
 import validatorZod from '../../middlewares/validation.middleware.js';
 import eventPutSchema from '../../schemas/event.schemas/put.schema.js';
 import eventPatchSchema from '../../schemas/event.schemas/patch.schemas.js';
+import errorHandler from '../../middlewares/errorHandler.js';
 
 const router = express.Router();
 
 router.route('/')
-  .get(eventController.getAll)
+  .get(
+    errorHandler(eventController.getAll),
+  )
   .put(
     validatorZod(eventPutSchema),
-    eventController.create,
+    errorHandler(eventController.create),
   );
 
 router.route('/:id(\\d+)')
-  .get(eventController.getOne)
+  .get(
+    errorHandler(eventController.getOne),
+  )
   .patch(
     validatorZod(eventPatchSchema),
-    eventController.update,
+    errorHandler(eventController.update),
   )
-  .delete(eventController.delete);
+  .delete(
+    errorHandler(eventController.delete),
+  );
 
 export default router;
