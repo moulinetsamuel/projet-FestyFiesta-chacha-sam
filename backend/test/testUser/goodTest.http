@@ -2,9 +2,12 @@
 
 ### GET recuperation de tous les utilisateurs
 GET {{endpoint}}/user
+Authorization: Bearer {{$dotenv TOKEN2}}
 
-### GET recuperation d'un utilisateur
+
+### GET récupération d'un utilisateur avec token
 GET {{endpoint}}/user/1
+Authorization: Bearer {{$dotenv TOKEN}}
 
 
 ### PUT creation d'un utilisateur

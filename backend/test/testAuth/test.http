@@ -5,7 +5,7 @@ POST {{endpoint}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@test.test",
-    "password": "testtest"
+    "email": "admin1.admin1@admin1.com",
+    "password": "admin1"
 }
 

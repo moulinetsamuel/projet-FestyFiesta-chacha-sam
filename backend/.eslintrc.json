@@ -12,6 +12,7 @@
         "no-console": "off",
         "import/extensions": "off",
         "no-multi-spaces": "off",
-        "max-len": "off"
+        "max-len": "off",
+        "consistent-return": "off"
     }
 }
