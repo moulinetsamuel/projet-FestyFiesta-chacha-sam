@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import ApiError from '../../error/apiError.js';
+import ApiError from '../error/apiError.js';
 import { User } from '../models/index.js';
 
 export default async (req, res, next) => {

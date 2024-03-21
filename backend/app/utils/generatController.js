@@ -1,4 +1,4 @@
-import ApiError from '../../error/apiError.js';
+import ApiError from '../error/apiError.js';
 /**
  *
  * @param {*} model Model Sequelize

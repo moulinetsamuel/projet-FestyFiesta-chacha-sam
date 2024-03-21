@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/index.js';
 import generateController from '../utils/generatController.js';
-import ApiError from '../../error/apiError.js';
+import ApiError from '../error/apiError.js';
 
 const controllerUserGeneric = generateController(User);
 

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
-import ApiError from '../../error/apiError.js';
+import ApiError from '../error/apiError.js';
 
 export default {
 
