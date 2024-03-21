@@ -1,33 +1,70 @@
 @endpoint=http://localhost:{{$dotenv PORT}}/api
 
-### GET BAD récupération d'un objet mauvais id
-GET {{endpoint}}/user/fzef
+
+### GET BAD récuperation d'un user mauvais id
+GET {{endpoint}}/user/hh
 Authorization: Bearer {{$dotenv TOKEN}}
 
-### GET BAD récupération d'un objet inexistant
-GET {{endpoint}}/user/533tyhgd
+### GET BAD récuperation d'un user
+GET {{endpoint}}/user/11
 Authorization: Bearer {{$dotenv TOKEN}}
 
-### PUT BAD creation d'un user
-PUT {{endpoint}}/user
+### PUT BAD creation d'un user manque des champs
+PUT  {{endpoint}}/user
 Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-    "firstname": "user 1",
-    "lastname": "user 1",
-    "email": "admin.adrmin@admin.com",
-    "password": "user 1",
-    "confirmPassword": "userf 1",
-    "name": "user 1"
+
 }
 
-### PATCH BAD modification d'un user
-PATCH {{endpoint}}/user/1
+### PUT BAD creation d'un user avec un mdp différent de la confirmation
+PUT  {{endpoint}}/user
 Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-    "password": "user 1",
-    "confirmPassword": "usefer 1"
+    "firstname": "test",
+    "lastname": "test",
+    "email": "test.test@test.com",
+    "password": "test",
+    "confirmPassword": "test1"
 }
+
+### PUT BAD creation d'un user avec un email déjà existant
+PUT  {{endpoint}}/user
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+    "firstname": "test",
+    "lastname": "test",
+    "email": "admin.admin@admin.com",
+    "password": "test",
+    "confirmPassword": "test"
+}
+
+### PATCH BAD modification d'un user avec aucun champs
+PATCH  {{endpoint}}/user/1
+Content-Type: application/json
+Authorization : Bearer {{$dotenv TOKEN}}
+
+{
+
+}
+
+### PATCH BAD modification d'un user qui n'existe pas
+PATCH  {{endpoint}}/user/100
+Content-Type: application/json
+Authorization : Bearer {{$dotenv TOKEN}}
+
+
+{
+    "firstname": "test"
+}
+
+### DELETE BAD suppression d'un user qui n'existe pas
+DELETE {{endpoint}}/user/100
+Authorization : Bearer {{$dotenv TOKEN}}
+
+

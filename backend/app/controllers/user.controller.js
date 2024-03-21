@@ -41,7 +41,7 @@ const controllerUser = {
     });
 
     if (nbUpdated === 0) {
-      return next(new ApiError(400, 'User not found'));
+      return next(new ApiError(400, `No ${User.name} with id ${req.params.id} found`));
     }
 
     res.json(dataUpdated[0]);

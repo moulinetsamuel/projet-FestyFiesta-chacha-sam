@@ -2,7 +2,7 @@
 
 ### GET recuperation de tous les utilisateurs
 GET {{endpoint}}/user
-Authorization: Bearer {{$dotenv TOKEN2}}
+Authorization: Bearer {{$dotenv TOKEN}}
 
 
 ### GET récupération d'un utilisateur avec token

@@ -1,23 +1,53 @@
 @endpoint=http://localhost:{{$dotenv PORT}}/api
 
-### GET BAD récupération d'un objet mauvais id
-GET {{endpoint}}/object/fzef
 
-### GET BAD récupération d'un objet inexistant
-GET {{endpoint}}/object/533tyhgd
+### GET BAD récuperation d'un object mauvais id
+GET {{endpoint}}/object/hh
+Authorization: Bearer {{$dotenv TOKEN}}
 
-### GET BAD création d'un objet avec un name déjà existant
-PUT {{endpoint}}/object
+### GET BAD récuperation d'un object
+GET {{endpoint}}/object/11
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### PUT BAD creation d'un object manque des champs
+PUT  {{endpoint}}/object
 Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+
+}
+
+### PUT BAD creation d'un object avec un nom deja existant
+PUT  {{endpoint}}/object
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
 
 {
     "name": "object 1"
 }
 
-### PATCH BAD modification d'un objet avec un name déjà existant
-PATCH {{endpoint}}/object/1
+### PATCH BAD modification d'un object avec aucun champs
+PATCH  {{endpoint}}/object/1
 Content-Type: application/json
+Authorization : Bearer {{$dotenv TOKEN}}
 
 {
-    "name": "object 1"
+
 }
+
+### PATCH BAD modification d'un object qui n'existe pas
+PATCH  {{endpoint}}/object/100
+Content-Type: application/json
+Authorization : Bearer {{$dotenv TOKEN}}
+
+
+{
+    "name": "test"
+}
+
+### DELETE BAD suppression d'un object qui n'existe pas
+DELETE {{endpoint}}/object/100
+Authorization : Bearer {{$dotenv TOKEN}}
+
+

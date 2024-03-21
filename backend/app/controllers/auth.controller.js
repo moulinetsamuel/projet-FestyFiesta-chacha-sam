@@ -14,12 +14,12 @@ export default {
 
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      throw new ApiError(400, 'User Not Found');
+      throw new ApiError(401, 'User or Password is invalid');
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new ApiError(401, 'Invalid Password');
+      throw new ApiError(401, 'User or Password is invalid');
     }
 
     const token = jwt.sign({
@@ -28,6 +28,7 @@ export default {
       lastname: user.lastname,
       email: user.email,
     }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURATION });
-    res.json({ token });
+
+    res.status(200).json({ token });
   },
 };

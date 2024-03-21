@@ -1,3 +1,4 @@
+import ApiError from '../../error/apiError.js';
 /**
  *
  * @param {*} model Model Sequelize
@@ -13,8 +14,7 @@ const generateController = (model) => ({
 
     const data = await model.findByPk(id);
     if (!data) {
-      res.status(404).send('Not Found');
-      return;
+      throw new ApiError(400, `No ${model.name} with id ${id} found`);
     }
 
     res.json(data);
@@ -35,18 +35,21 @@ const generateController = (model) => ({
     });
 
     if (nbUpdated === 0) {
-      res.status(404).send('Not Found');
-      return;
+      throw new ApiError(400, `No ${model.name} with id ${req.params.id} found`);
     }
 
     res.json(dataUpdated[0]);
   },
   async delete(req, res) {
-    await model.destroy({
+    const nbDeleted = await model.destroy({
       where: {
         id: req.params.id,
       },
     });
+
+    if (!nbDeleted) {
+      throw new ApiError(400, `No ${model.name} with id ${req.params.id} found`);
+    }
 
     // 204 => On retourne rien mais tout c'est bien passé
     res.status(204).end();
