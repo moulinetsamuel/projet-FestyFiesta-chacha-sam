@@ -27,9 +27,6 @@ class ApiError extends Error {
           this.status = 400;
         }
         break;
-      case 'ValidationError':
-        this.status = 400;
-        break;
       case 'AuthError':
         if (errorType === 0) {
           this.status = 401;
@@ -44,12 +41,11 @@ class ApiError extends Error {
   }
 }
 
-class ValidationError extends ApiError {}
 class AuthError extends ApiError {}
 class EventError extends ApiError {}
 class UserError extends ApiError {}
 class ObjectError extends ApiError {}
 
 export {
-  ApiError, ValidationError, AuthError, EventError, UserError, ObjectError,
+  ApiError, AuthError, EventError, UserError, ObjectError,
 };

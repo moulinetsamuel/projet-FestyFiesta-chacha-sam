@@ -3,13 +3,16 @@
 
 ### GET récuperation de tous les evenements
 GET {{endpoint}}/event
+Authorization: Bearer {{$dotenv TOKEN}}
 
 ### GET récuperation d'un evenement
 GET {{endpoint}}/event/1
+Authorization: Bearer {{$dotenv TOKEN}}
 
 ### PUT creation d'un evenement
 PUT  {{endpoint}}/event
 Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
 
 {
     "name": "test",
@@ -21,6 +24,7 @@ Content-Type: application/json
 ### PATCH modification d'un evenement
 PATCH {{endpoint}}/event/1
 Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
 
 {
     "name": "test2",
@@ -31,3 +35,4 @@ Content-Type: application/json
 
 ### DELETE suppression d'un evenement
 DELETE {{endpoint}}/event/1
+Authorization: Bearer {{$dotenv TOKEN}}
