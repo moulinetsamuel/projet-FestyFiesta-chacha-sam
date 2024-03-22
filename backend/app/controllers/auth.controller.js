@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
 import { AuthError } from '../error/apiError.js';
@@ -17,7 +16,7 @@ export default {
       throw new AuthError('User or Password incorrect', '', 0);
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await User.checkPassword(password, user.password);
     if (!isPasswordValid) {
       throw new AuthError('User or Password incorrect', '', 0);
     }
