@@ -2,10 +2,10 @@
 
 
 ### GET BAD récuperation d'un evenement mauvais id
-GET {{endpoint}}/event/hh
+GET {{endpoint}}/event/1h
 Authorization: Bearer {{$dotenv TOKEN}}
 
-### GET BAD récuperation d'un evenement
+### GET BAD récuperation d'un evenement qui n'existe pas
 GET {{endpoint}}/event/11
 Authorization: Bearer {{$dotenv TOKEN}}
 

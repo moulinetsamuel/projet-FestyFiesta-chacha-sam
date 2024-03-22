@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/index.js';
 import generateController from '../utils/generatController.js';
-import ApiError from '../error/apiError.js';
+import { UserError } from '../error/apiError.js';
 
 const controllerUserGeneric = generateController(User);
 
@@ -15,8 +15,7 @@ const controllerUser = {
       email, password, firstname, lastname,
     } = req.body;
 
-    const NB_OF_SALT_ROUNDS = parseInt(process.env.NB_OF_SALT_ROUNDS, 10);
-    const hashedPassword = await bcrypt.hash(password, NB_OF_SALT_ROUNDS);
+    const hashedPassword = await bcrypt.hash(password, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
 
     const user = await User.create({
       email,
@@ -27,21 +26,26 @@ const controllerUser = {
     res.status(201).json(user);
   },
 
-  async update(req, res, next) {
+  async update(req, res) {
+    const id = Number(req.params.id);
+
+    if (!id) {
+      throw new UserError('Invalid parameter id');
+    }
+
     if (req.body.password) {
-      const NB_OF_SALT_ROUNDS = parseInt(process.env.NB_OF_SALT_ROUNDS, 10);
-      req.body.password = await bcrypt.hash(req.body.password, NB_OF_SALT_ROUNDS);
+      req.body.password = await bcrypt.hash(req.body.password, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
     }
 
     const [nbUpdated, dataUpdated] = await User.update(req.body, {
       where: {
-        id: req.params.id,
+        id,
       },
       returning: true,
     });
 
     if (nbUpdated === 0) {
-      return next(new ApiError(400, `No ${User.name} with id ${req.params.id} found`));
+      throw new UserError('This user does not exist', '', 0);
     }
 
     res.json(dataUpdated[0]);

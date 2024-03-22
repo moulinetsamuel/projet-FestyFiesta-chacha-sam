@@ -5,7 +5,7 @@
 GET {{endpoint}}/object/hh
 Authorization: Bearer {{$dotenv TOKEN}}
 
-### GET BAD récuperation d'un object
+### GET BAD récuperation d'un object qui n'existe pas
 GET {{endpoint}}/object/11
 Authorization: Bearer {{$dotenv TOKEN}}
 

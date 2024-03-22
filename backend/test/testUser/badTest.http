@@ -5,7 +5,7 @@
 GET {{endpoint}}/user/hh
 Authorization: Bearer {{$dotenv TOKEN}}
 
-### GET BAD récuperation d'un user
+### GET BAD récuperation d'un user qui n'existe pas
 GET {{endpoint}}/user/11
 Authorization: Bearer {{$dotenv TOKEN}}
 

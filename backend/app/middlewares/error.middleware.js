@@ -1,18 +1,28 @@
 // eslint-disable-next-line no-unused-vars
 export default (err, _, res, __) => {
-  let { status, message } = err;
+  // 0 - Message simple
+  // 1 - Message sans error
+  // 2 - Toutes les informations
+  const debugLevel = 0;
+  let message = {};
 
-  if (!status) {
-    status = 500;
+  switch (debugLevel) {
+    case 0:
+      message = { message: err.message };
+      if (err.name === 'SequelizeDatabaseError') {
+        message = { message: 'Database Error' };
+      }
+      break;
+    case 1:
+      message = { message: err.message };
+      break;
+    case 2:
+      message = { message: err.message, error: err };
+      console.log(err);
+      break;
+    default:
+      console.log('bad debugLevel');
   }
 
-  if (status === 500) {
-    console.log(err);
-    message = 'Internal Server Error';
-  }
-
-  if (status === 404) {
-    message = 'Not Found';
-  }
-  return res.status(status).json({ error: message });
+  return res.status(err.status || 500).json(message);
 };

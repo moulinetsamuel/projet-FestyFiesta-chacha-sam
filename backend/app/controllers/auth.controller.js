@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
-import ApiError from '../error/apiError.js';
+import { AuthError } from '../error/apiError.js';
 
 export default {
 
@@ -9,17 +9,17 @@ export default {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      throw new ApiError(400, 'Bad Request - Missing Params');
+      throw new AuthError('Missing Email or Password');
     }
 
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      throw new ApiError(401, 'User or Password is invalid');
+      throw new AuthError('User or Password incorrect', '', 0);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new ApiError(401, 'User or Password is invalid');
+      throw new AuthError('User or Password incorrect', '', 0);
     }
 
     const token = jwt.sign({

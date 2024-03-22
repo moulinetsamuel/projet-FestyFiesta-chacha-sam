@@ -16,7 +16,7 @@ router.route('/')
     errorHandler(userController.create),
   );
 
-router.route('/:id(\\d+)')
+router.route('/:id')
   .get(
     errorHandler(userController.getOne),
   )

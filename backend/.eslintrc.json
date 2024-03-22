@@ -13,6 +13,7 @@
         "import/extensions": "off",
         "no-multi-spaces": "off",
         "max-len": "off",
-        "consistent-return": "off"
+        "consistent-return": "off",
+        "max-classes-per-file": "off"
     }
 }

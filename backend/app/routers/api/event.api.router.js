@@ -16,7 +16,7 @@ router.route('/')
     errorHandler(eventController.create),
   );
 
-router.route('/:id(\\d+)')
+router.route('/:id')
   .get(
     errorHandler(eventController.getOne),
   )
