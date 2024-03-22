@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { Model, DataTypes } from 'sequelize';
 import bcrypt from 'bcrypt';
 import sequelize from '../config/database.js';
@@ -36,20 +37,19 @@ User.init({
 }, {
   sequelize,
   tableName: 'users',
-});
-
-User.beforeCreate(async (user) => {
-  const hash = await bcrypt.hash(user.password, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
-  // eslint-disable-next-line no-param-reassign
-  user.password = hash;
-});
-
-User.beforeUpdate(async (user) => {
-  if (user.password) {
-    const hash = await bcrypt.hash(user.password, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
-    // eslint-disable-next-line no-param-reassign
-    user.password = hash;
-  }
+  hooks: {
+    beforeCreate: async (user) => {
+      const hash = await bcrypt.hash(user.password, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
+      user.password = hash;
+    },
+    beforeUpdate: async (user) => {
+      console.log('beforeUpdate', user);
+      if (user.password) {
+        const hash = await bcrypt.hash(user.password, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
+        user.password = hash;
+      }
+    },
+  },
 });
 
 User.checkPassword = async (password, hash) =>  bcrypt.compare(password, hash);

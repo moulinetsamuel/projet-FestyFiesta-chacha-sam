@@ -35,20 +35,30 @@ const generateController = (model) => ({
       throw new ApiError('Invalid parameter id', `${model.name}Error`);
     }
 
-    const [nbUpdated, dataUpdated] = await model.update(req.body, {
+    // const [nbUpdated, dataUpdated] = await model.update(req.body, {
 
-      where: {
-        id,
-      },
+    //   where: {
+    //     id,
+    //   },
 
-      returning: true,
-    });
+    //   returning: true,
+    // });
 
-    if (nbUpdated === 0) {
+    // if (nbUpdated === 0) {
+    //   throw new ApiError(`This ${model.name} does not exist`, `${model.name}Error`, 0);
+    // }
+
+    // res.json(dataUpdated[0]);
+
+    const data = await model.findByPk(id);
+
+    if (!data) {
       throw new ApiError(`This ${model.name} does not exist`, `${model.name}Error`, 0);
     }
 
-    res.json(dataUpdated[0]);
+    await data.update(req.body);
+
+    res.json(data);
   },
   async delete(req, res) {
     const id = Number(req.params.id);

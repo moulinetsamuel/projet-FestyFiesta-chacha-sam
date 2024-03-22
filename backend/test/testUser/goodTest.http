@@ -24,17 +24,18 @@ Authorization: Bearer {{$dotenv TOKEN}}
 }
 
 ### PATCH modification d'un utilisateur
-PATCH {{endpoint}}/user/45
+PATCH {{endpoint}}/user/9
 Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
     "firstname": "test2",
     "lastname": "test2",
-    "email": "test2@test2.test",
-    "password": "testtest2",
-    "confirmPassword": "testtest2"
+    "email": "test2@test3.test",
+    "password": "testtest4",
+    "confirmPassword": "testtest4"
 }
 
 ### DELETE suppression d'un utilisateur
-DELETE {{endpoint}}/user/4
+DELETE {{endpoint}}/user/7
+Authorization: Bearer {{$dotenv TOKEN}}

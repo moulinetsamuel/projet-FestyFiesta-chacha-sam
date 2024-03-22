@@ -29,7 +29,7 @@ Authorization: Bearer {{$dotenv TOKEN}}
 {
     "name": "test2",
     "place": "test2",
-    "date": "2022-08-30",
+    "date": "2022/08/30",
     "description": "test2"
 }
 
