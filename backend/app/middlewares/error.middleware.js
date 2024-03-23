@@ -4,7 +4,7 @@ export default (err, _, res, __) => {
   // 0 - Message simple
   // 1 - Message sans error
   // 2 - Toutes les informations
-  const debugLevel = 1;
+  const debugLevel = 2;
   let message = {};
 
   // if (err.name === 'ZodError') {

@@ -1,5 +1,14 @@
 @endpoint=http://localhost:{{$dotenv PORT}}/api
 
+### POST connexion
+POST {{endpoint}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin1.admin1@admin1.com",
+    "password": "admin1"
+}
+
 ### GET recuperation de tous les utilisateurs
 GET {{endpoint}}/user
 Authorization: Bearer {{$dotenv TOKEN}}

@@ -1,6 +1,7 @@
-import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import { User } from '../models/index.js';
 import { AuthError } from '../error/apiError.js';
+import generateToken from '../utils/generateToken.js';
 
 export default {
 
@@ -11,23 +12,33 @@ export default {
       throw new AuthError('Missing Email or Password');
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.authenticate(email, password);
+
     if (!user) {
-      throw new AuthError('User or Password incorrect', '', 0);
+      throw new AuthError('Invalid Email or Password');
     }
 
-    const isPasswordValid = await User.checkPassword(password, user.password);
-    if (!isPasswordValid) {
-      throw new AuthError('User or Password incorrect', '', 0);
-    }
+    const xsrfToken = crypto.randomBytes(64).toString('hex');
 
-    const token = jwt.sign({
-      id: user.id,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-    }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURATION });
+    const { accessToken, refreshToken } = await generateToken(user, xsrfToken);
 
-    res.status(200).json({ token });
+    res.cookie('access_token', accessToken, {
+      httpOnly: false,
+      secure: false,
+      maxAge: process.env.ACCESS_TOKEN_EXPIRES_IN,
+    });
+
+    res.cookie('refresh_token', refreshToken, {
+      httpOnly: false,
+      secure: false,
+      maxAge: process.env.REFRESH_TOKEN_EXPIRES_IN,
+      path: '/login',
+    });
+
+    res.status(200).json({
+      accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
+      refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
+      xsrfToken,
+    });
   },
 };

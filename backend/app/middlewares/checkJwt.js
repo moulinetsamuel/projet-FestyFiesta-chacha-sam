@@ -4,36 +4,39 @@ import { User } from '../models/index.js';
 
 export default async (req, res, next) => {
   try {
-    const { headers } = req;
-    /* 1. On vérifie que le header Authorization est présent dans la requête */
-    if (!headers || !headers.authorization) {
-      throw new AuthError('Missing Authorization header', '', 0);
+    const { headers, cookies } = req;
+
+    if (!cookies || !cookies.access_token) {
+      throw new AuthError('Missing token in cookie', '', 0);
     }
 
-    /* 2. On vérifie que le header Authorization contient bien le token */
-    const [scheme, token] = headers.authorization.split(' ');
+    const accessToken = cookies.access_token;
 
-    if (!scheme || scheme.toLowerCase() !== 'bearer' || !token) {
-      throw new AuthError('Invalid Authorization header format', '', 0);
+    if (!headers || !headers['x-xsrf-token']) {
+      throw new AuthError('Missing XSRF token in header', '', 0);
     }
 
-    /* 3. On vérifie et décode le token à l'aide du secret */
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const xsrfToken = headers['x-xsrf-token'];
 
-    /* 4. On vérifie que l'utilisateur existe bien dans notre base de données */
-    const userId = decodedToken.id;
-    const user = await User.findOne({ where: { id: userId } });
+    const decoded = jwt.verify(accessToken, process.env.JWT_SECRET, {
+      algorithms: process.env.ACCESS_TOKEN_ALGORITHM,
+    });
+
+    if (xsrfToken !== decoded.xsrfToken) {
+      throw new AuthError('Invalid XSRF token', '', 0);
+    }
+
+    const userId = decoded.sub;
+    const user = await User.findByPk(userId);
 
     if (!user) {
-      throw new AuthError(`User with id ${userId} does not exist in database`, '', 0);
+      throw new AuthError('User not found', '', 0);
     }
 
-    /* 5. On passe l'utilisateur dans notre requête afin que celui-ci soit disponible pour les prochains middlewares */
     req.user = user;
 
-    /* 7. On appelle le prochain middleware */
     return next();
   } catch (err) {
-    next(new AuthError('Invalid token', '', 0));
+    next(err);
   }
 };

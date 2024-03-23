@@ -52,6 +52,16 @@ User.init({
   },
 });
 
-User.checkPassword = async (password, hash) =>  bcrypt.compare(password, hash);
+User.authenticate = async function authenticate(email, password) {
+  const user = await User.findOne({ where: { email } });
+  if (!user) {
+    return false;
+  }
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return false;
+  }
+  return user;
+};
 
 export default User;

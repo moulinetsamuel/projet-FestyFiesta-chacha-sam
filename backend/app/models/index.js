@@ -3,6 +3,7 @@ import Event from './Event.js';
 import Object from './Object.js';
 import EventUser from './EventUser.js';
 import ObjectEventUser from './ObjectEventUser.js';
+import RefreshToken from './RefreshToken.js';
 import sequelize from '../config/database.js';
 
 // liaison entre user et event pour definir l'author
@@ -59,11 +60,21 @@ Object.belongsToMany(Event, {
   otherKey: 'eventId',
 });
 
+User.hasMany(RefreshToken, {
+  as: 'refreshTokens',
+  foreignKey: 'userId',
+});
+RefreshToken.belongsTo(User, {
+  as: 'user',
+  foreignKey: 'userId',
+});
+
 export {
   User,
   Event,
   Object,
   EventUser,
   ObjectEventUser,
+  RefreshToken,
   sequelize,
 };

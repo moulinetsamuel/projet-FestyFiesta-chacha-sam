@@ -1,6 +1,7 @@
 @endpoint=http://localhost:{{$dotenv PORT}}/api
 
 ### POST test authentification
+# @name login
 POST {{endpoint}}/auth/login
 Content-Type: application/json
 
@@ -8,4 +9,13 @@ Content-Type: application/json
     "email": "admin1.admin1@admin1.com",
     "password": "admin1"
 }
+
+
+
+### GET récupération d'un utilisateur
+@cookie = {{login.response.headers.Set-Cookie}}
+@localStorage = {{login.response.body.xsrfToken}}
+
+GET {{endpoint}}/user/1
+x-xsrf-token: {{localStorage}}
 
