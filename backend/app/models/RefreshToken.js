@@ -36,6 +36,7 @@ RefreshToken.init({
       const hash = await bcrypt.hash(refreshToken.token, parseInt(process.env.NB_OF_SALT_ROUNDS, 10));
       refreshToken.token = hash;
     },
+
   },
 });
 

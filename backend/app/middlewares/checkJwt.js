@@ -6,6 +6,9 @@ export default async (req, res, next) => {
   try {
     const { headers, cookies } = req;
 
+    console.log('access_token', cookies.access_token);
+    console.log('refresh_token', cookies.refresh_token);
+
     if (!cookies || !cookies.access_token) {
       throw new AuthError('Missing token in cookie', '', 0);
     }
@@ -18,7 +21,7 @@ export default async (req, res, next) => {
 
     const xsrfToken = headers['x-xsrf-token'];
 
-    const decoded = jwt.verify(accessToken, process.env.JWT_SECRET, {
+    const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, {
       algorithms: process.env.ACCESS_TOKEN_ALGORITHM,
     });
 

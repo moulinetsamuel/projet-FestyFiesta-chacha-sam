@@ -23,16 +23,16 @@ export default {
     const { accessToken, refreshToken } = await generateToken(user, xsrfToken);
 
     res.cookie('access_token', accessToken, {
-      httpOnly: false,
+      httpOnly: true,
       secure: false,
       maxAge: process.env.ACCESS_TOKEN_EXPIRES_IN,
     });
 
     res.cookie('refresh_token', refreshToken, {
-      httpOnly: false,
+      httpOnly: true,
       secure: false,
       maxAge: process.env.REFRESH_TOKEN_EXPIRES_IN,
-      path: '/login',
+      // path: '/login',
     });
 
     res.status(200).json({

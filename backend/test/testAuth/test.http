@@ -13,9 +13,6 @@ Content-Type: application/json
 
 
 ### GET récupération d'un utilisateur
-@cookie = {{login.response.headers.Set-Cookie}}
 @localStorage = {{login.response.body.xsrfToken}}
-
 GET {{endpoint}}/user/1
 x-xsrf-token: {{localStorage}}
-
